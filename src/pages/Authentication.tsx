@@ -18,7 +18,7 @@ export default function Auth() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isTermsChecked, setIsTermsChecked] = useState(false);
-  const [isBusinessAccount, setIsBusinessAccount] = useState(false);
+  const [role, setRole] = useState("");
 
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ export default function Auth() {
         }
 
       } else if (step === "register") {
-        if (await handleRegisterFormSubmit(firstName, lastName, email, password, isBusinessAccount)) {
+        if (await handleRegisterFormSubmit(firstName, lastName, email, password, role)) {
           showAlert("Account Created!", `${email} has been created.`, "info", true, "#", "Learn More");
           setTimeout(() => window.location.href = "/dashboard", 2000);
         } else {
@@ -106,7 +106,7 @@ export default function Auth() {
                   setLastName={setLastName}
                   setPassword={setPassword}
                   setIsTermsChecked={setIsTermsChecked}
-                  setIsBusinessAccount={setIsBusinessAccount}
+                  setRole={setRole}
                   onSubmit={handleFormSubmit}
                   isLoading={isLoading}
                 />

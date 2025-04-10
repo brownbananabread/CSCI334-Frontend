@@ -15,7 +15,7 @@ interface Props {
   setLastName: (value: string) => void;
   setPassword: (value: string) => void;
   setIsTermsChecked: (value: boolean) => void;
-  setIsBusinessAccount: (value: boolean) => void;
+  setRole: (value: string) => void;
   onSubmit: (e: FormEvent) => void;
   isLoading: boolean;
 }
@@ -29,7 +29,7 @@ export default function RegisterForm({
   setLastName,
   setPassword,
   setIsTermsChecked,
-  setIsBusinessAccount,
+  setRole,
   onSubmit,
   isLoading,
 }: Props) {
@@ -39,7 +39,7 @@ export default function RegisterForm({
         <Switch
           label="Are you registering as a Sole Trader?"
           color="gray"
-          onChange={setIsBusinessAccount}
+          onChange={(checked) => setRole(checked ? "soleTrader" : "regular")}
         />
       </div>
       <div className="mb-5">

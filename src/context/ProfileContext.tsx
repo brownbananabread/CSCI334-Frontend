@@ -4,10 +4,12 @@ import { useAlert } from './AlertContext';
 import { fetchRequest } from '../utils/fetchRequest';
 
 interface Profile {
+  userId: string;
+  email: string;
   firstName: string;
   lastName: string;
-  email: string;
-  soleTrader: boolean;
+  role: string;
+  serviceOffered: string;
 }
 
 interface ProfileContextType {
@@ -44,7 +46,7 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
     } catch (error) {
       console.error("Error fetching profile:", error);
       setError("Failed to fetch profile.");
-      showAlert("Error!", "An error occurred while fetching the profile. Please try again later.", "error", true);
+      showAlert("User logged out!", "To access your account please sign in.", "info", true);
     } finally {
       setIsLoading(false);
     }

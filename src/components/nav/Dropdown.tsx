@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useProfile } from "../../context/ProfileContext";
 import { Menu, X } from "lucide-react";
-import { CustomerMembership, SoleTraderMembership } from "../ui/Membership";
+import { CustomerMembership, SoleTraderMembership, AdminMembership } from "../ui/Membership";
 import { GridIcon } from "lucide-react";
 
 export default function DashboardDropdown() {
@@ -35,7 +35,9 @@ export default function DashboardDropdown() {
                   {profile ? email : "Loading..."}
                 </span>
               </div>
-              {profile?.soleTrader ? <SoleTraderMembership /> : <CustomerMembership />}
+                {profile?.role === "soleTrader" ? <SoleTraderMembership /> : 
+                 profile?.role === "admin" ? <AdminMembership /> : 
+                 <CustomerMembership />}
             </div>
 
             <li className="my-2 border-t border-gray-200 dark:border-gray-700" />

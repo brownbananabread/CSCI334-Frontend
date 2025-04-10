@@ -44,7 +44,7 @@ export const handleLoginFormSubmit = async (email: string, password: string) => 
  * @param lastName - Users last name.
  * @param email - Users email address.
  * @param password - Users password.
- * @param isBusinessAccount - Boolean to check if user is a business account.
+ * @param role - Boolean to check if user is a business account.
  *
  * @returns - JSON-parsed response body.
  **/
@@ -54,12 +54,13 @@ export const handleRegisterFormSubmit = async (
   lastName: string,
   email: string, 
   password: string,
-  isBusinessAccount: boolean
+  role: string
 ) => {
+  
   const { status, body } = await fetchRequest({
     method: 'POST',
     url: 'http://localhost:5174/api/register',
-    data: { firstName, lastName, email, password, isBusinessAccount },
+    data: { firstName, lastName, email, password, role },
   });
   console.log(body);
   return status === 200;
